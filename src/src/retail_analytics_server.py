@@ -34,7 +34,7 @@ def get_schema(product: str) -> str:
         return f"No schema available for {product}"
     """
     try:
-        s3 = boto3.client("s3")
+        s3 = boto3.client("s3", region_name=os.environ["AWS_REGION"])
         response = s3.get_object(
             Bucket=os.environ["ANALYTICS_BUCKET"], Key="schemas/retail_schema.ddl"
         )
