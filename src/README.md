@@ -10,7 +10,7 @@ The quickest deployment path is to use [FastMCP Cloud](https://fastmcp.cloud/) t
 2. Sign up for a free [FastMCP Cloud](https://fastmcp.cloud/) account.
 3. [FastMCP Cloud](https://fastmcp.cloud/) will ask for access to your forked repository. It will deploy as a remote MCP server, and return the MCP endpoint.
 
-![alt text]./img/mcp_img1.png)
+![alt text](./img/mcp_img1.png)
 
 ## Usage
 
@@ -24,6 +24,6 @@ Once the server is successfully deployed, it can be used with any of the GenAI p
 
 1. Once connected, you can use the natural language chat interface to help develop and execute analytic reports. See below for some sample prompts.
 
-![alt text]./img/mcp_claude_img2.png)
+![alt text](./img/mcp_claude_img2.png)
 
-![alt text]./img/mcp_claude_img3.png)
+![alt text](./img/mcp_claude_img3.png)
