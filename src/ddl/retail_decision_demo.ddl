@@ -3,12 +3,12 @@
 -- Generated from: Bike Sales Model.json
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS retail_decision_demo;
+CREATE DATABASE IF NOT EXISTS retail_decision_support_demo;
 
 -- ------------------------------------------------------------
 -- SalesOrderItems
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.SalesOrderItems (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.SalesOrderItems (
     SALESORDERID       VARCHAR(10)    COMMENT 'Sales order ID (PK)',
     SALESORDERITEM     VARCHAR(10)    COMMENT 'Sales order item (PK)',
     PRODUCTID          VARCHAR(10)    COMMENT 'Product ID',
@@ -32,7 +32,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- SalesOrders
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.SalesOrders (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.SalesOrders (
     SALESORDERID       VARCHAR(10)    COMMENT 'Sales order ID (PK)',
     CREATEDBY          VARCHAR(10)    COMMENT 'Created by',
     CREATEDAT          VARCHAR(8)     COMMENT 'Created at date in YYYYMMDD format',
@@ -59,7 +59,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- Addresses
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.Addresses (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.Addresses (
     ADDRESSID           VARCHAR(10)    COMMENT 'Address ID (PK)',
     CITY                VARCHAR(40)    COMMENT 'City',
     POSTALCODE          VARCHAR(10)    COMMENT 'Postal code',
@@ -82,7 +82,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- BusinessPartners
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.BusinessPartners (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.BusinessPartners (
     PARTNERID          VARCHAR(10)    COMMENT 'Partner ID (PK)',
     PARTNERROLE        VARCHAR(3)     COMMENT 'Partner role',
     EMAILADDRESS       VARCHAR(255)   COMMENT 'Email address',
@@ -107,7 +107,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- Employees
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.Employees (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.Employees (
     EMPLOYEEID          VARCHAR(10)    COMMENT 'Employee ID (PK)',
     NAME_FIRST          VARCHAR(40)    COMMENT 'First name',
     NAME_MIDDLE         VARCHAR(40)    COMMENT 'Middle name',
@@ -119,8 +119,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.Employees (
     EMAILADDRESS        VARCHAR(255)   COMMENT 'Email address',
     LOGINNAME           VARCHAR(12)    COMMENT 'Login name',
     ADDRESSID           VARCHAR(10)    COMMENT 'Address ID',
-    VALIDITY_STARTDATE  DATE           COMMENT 'Validity start date',
-    VALIDITY_ENDDATE    DATE           COMMENT 'Validity end date (PK)'
+    VALIDITY_STARTDATE  VARCHAR(8)     COMMENT 'Valid starting from date, stored as an string YYYYMMDD',
+    VALIDITY_ENDDATE    VARCHAR(8)     COMMENT 'Valid ending at date, stored as an string YYYYMMDD'
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
@@ -131,7 +131,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- ProductCategories
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.ProductCategories (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.ProductCategories (
     PRODCATEGORYID     VARCHAR(2)     COMMENT 'Product category ID (PK)',
     CREATEDBY          VARCHAR(10)    COMMENT 'Created by',
     CREATEDAT          VARCHAR(8)     COMMENT 'Created at date, stored as an string YYYYMMDD'
@@ -145,7 +145,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- ProductCategoryText
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.ProductCategoryText (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.ProductCategoryText (
     PRODCATEGORYID     VARCHAR(2)     COMMENT 'Product category ID (PK)',
     LANGUAGE           VARCHAR(2)     COMMENT 'Language (PK)',
     SHORT_DESCR        VARCHAR(20)    COMMENT 'Short description',
@@ -161,14 +161,14 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- Products
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.Products (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.Products (
     PRODUCTID           VARCHAR(10)    COMMENT 'Product ID (PK)',
     TYPECODE            VARCHAR(2)     COMMENT 'Type code',
     PRODCATEGORYID      VARCHAR(2)     COMMENT 'Product category ID',
     CREATEDBY           VARCHAR(10)    COMMENT 'Created by',
-    CREATEDAT           DATE           COMMENT 'Created at date',
+    CREATEDAT           VARCHAR(8)     COMMENT 'Created at date, stored as an string YYYYMMDD',
     CHANGEDBY           VARCHAR(10)    COMMENT 'Changed by',
-    CHANGEDAT           DATE           COMMENT 'Changed at date',
+    CHANGEDAT           VARCHAR(8)     COMMENT 'Changed at date, stored as an string YYYYMMDD',
     SUPPLIER_PARTNERID  VARCHAR(10)    COMMENT 'Supplier partner ID',
     TAXTARIFFCODE       INT            COMMENT 'Tax tariff code',
     QUANTITYUNIT        VARCHAR(3)     COMMENT 'Quantity unit',
@@ -191,7 +191,7 @@ TBLPROPERTIES ('skip.header.line.count'='1')
 -- ------------------------------------------------------------
 -- ProductTexts
 -- ------------------------------------------------------------
-CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_demo.ProductTexts (
+CREATE EXTERNAL TABLE IF NOT EXISTS retail_decision_support_demo.ProductTexts (
     PRODUCTID          VARCHAR(10)    COMMENT 'Product ID (PK)',
     LANGUAGE           VARCHAR(2)     COMMENT 'Language (PK)',
     SHORT_DESCR        VARCHAR(20)    COMMENT 'Short description',
