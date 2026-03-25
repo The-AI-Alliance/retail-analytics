@@ -15,7 +15,7 @@ class ScratchStack(Stack):
         target_buckets: List[BucketAttributes],
         deploy_replication: bool,
         application_ci: str,
-        **kwargs
+        **kwargs,
     ) -> None:
 
         super().__init__(scope, construct_id, **kwargs)
@@ -52,7 +52,7 @@ class ScratchStack(Stack):
 
         self.scratch_bucket = aws_s3.Bucket(
             self,
-            "iotScratchBucket",
+            f"{application_ci}ScratchBucket",
             block_public_access=aws_s3.BlockPublicAccess.BLOCK_ALL,
             encryption=aws_s3.BucketEncryption.S3_MANAGED,
             bucket_name=bucket_name,
