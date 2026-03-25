@@ -12,6 +12,7 @@ class AnalyticsStack(Stack):
         env: str,
         datalake_bucket_name: str,
         demo_dataset_name: str,
+        db_name: str,
         application_ci: str,
         **kwargs,
     ):
@@ -25,7 +26,6 @@ class AnalyticsStack(Stack):
             self, id=f"{application_ci}DatalakeBucket", bucket_name=datalake_bucket_name
         )
 
-        db_name = "retail_decision_support_demo"
         athena_catalog_name = "AwsDataCatalog"
         # Create a Glue database for Athena
         glue_db = glue.CfnDatabase(
@@ -72,11 +72,11 @@ class AnalyticsStack(Stack):
                 "parameters": {"classification": "json", "has_encrypted_data": "false"},
                 "storageDescriptor": {
                     "columns": [
-                        {"name": "PRODCATEGORYID", "type": "string"},
-                        {"name": "LANGUAGE", "type": "string"},
-                        {"name": "SHORT_DESCR", "type": "string"},
-                        {"name": "MEDIUM_DESCR", "type": "string"},
-                        {"name": "LONG_DESCR", "type": "string"},
+                        {"name": "prodcategoryid", "type": "string"},
+                        {"name": "language", "type": "string"},
+                        {"name": "short_descr", "type": "string"},
+                        {"name": "medium_descr", "type": "string"},
+                        {"name": "long_descr", "type": "string"},
                     ],
                     "location": f"{datalake_bucket.s3_url_for_object()}/{demo_dataset_name}/productcategorytext/",
                     "inputFormat": "org.apache.hadoop.mapred.TextInputFormat",
