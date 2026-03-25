@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
 import aws_cdk as cdk
-
+import os
 from root_env_stack import RootEnvStack
 
-app_ci = "raa"
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app_ci = os.getenv("APPLICATION_CODE")
 
 app = cdk.App()
 branch = ""
@@ -15,7 +19,7 @@ RootEnvStack(
     application_ci=app_ci,
     cdk_boostrap_qualifier="base",
     # Remember...False, then True to avoid the deadlock...
-    deploy_replication=False,
+    deploy_replication=True,
     app_environment="dev",
     environment="dev",
     credential_role_level="dev",

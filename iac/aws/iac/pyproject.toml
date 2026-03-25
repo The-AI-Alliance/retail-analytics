@@ -10,6 +10,7 @@ package-mode = false
 python = "^3.12"
 aws-cdk-lib = "2.150.0"
 constructs = ">=10.0.0,<11.0.0"
+python-dotenv = "^1.2.2"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.2.2"

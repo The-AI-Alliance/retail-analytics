@@ -21,7 +21,6 @@ class RootEnvStack(aws_cdk.Stack):
         app_environment: str,
         environment: str,
         tag: str,
-        credential_role_level: str,
         id: builtins.str,
         *,
         application_ci: builtins.str,
@@ -67,8 +66,6 @@ class RootEnvStack(aws_cdk.Stack):
             source_scratch_bucket=primary_scratch_bucket,
             target_scratch_buckets=[secondary_scratch_bucket],
             deploy_replication=deploy_replication,
-            app_environment=app_environment,
-            credential_role_level=credential_role_level,
             aws_environment=aws_cdk.Environment(
                 account=account_ids[environment], region="us-east-2"
             ),
@@ -84,8 +81,6 @@ class RootEnvStack(aws_cdk.Stack):
             source_scratch_bucket=secondary_scratch_bucket,
             target_scratch_buckets=[primary_scratch_bucket],
             deploy_replication=deploy_replication,
-            app_environment=app_environment,
-            credential_role_level=credential_role_level,
             aws_environment=aws_cdk.Environment(
                 account=account_ids[environment], region="us-east-1"
             ),

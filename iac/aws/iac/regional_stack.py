@@ -1,13 +1,16 @@
 import builtins
 from typing import List
 
+import os
+
 import aws_cdk
 from aws_cdk import aws_iam
 
-from datalake_stack.datalake_stack import IotDataLakeStack
-from scratch_stack.scratch_stack import IotScratchStack
+from datalake_stack.datalake_stack import DataLakeStack
+from scratch_stack.scratch_stack import ScratchStack
 from config.bucket_attributes import BucketAttributes
 from analytics_stack.analytics_stack import AnalyticsStack
+from access_stack.access_stack import AccessStack
 
 
 class RegionalStack(aws_cdk.Stack):
@@ -20,8 +23,6 @@ class RegionalStack(aws_cdk.Stack):
         source_scratch_bucket: BucketAttributes,
         target_scratch_buckets: List[BucketAttributes],
         deploy_replication: bool,
-        app_environment: str,
-        credential_role_level: str,
         tag: str,
         aws_environment: aws_cdk.Environment,
         id: builtins.str,
@@ -29,16 +30,10 @@ class RegionalStack(aws_cdk.Stack):
     ):
         # application_ci=application_ci
         super().__init__(scope, id)
-        prefix = ""
-        if app_environment != "dev":
-            prefix = "ADFS-"
-        dev_role = aws_iam.Role.from_role_name(
-            self,
-            "ebrDevRole",
-            role_name=f"""{prefix}-{app_environment.upper()}-OperationsTechnology_EBR-{credential_role_level.upper()}""",
-        )
 
-        datalake_stack = IotDataLakeStack(
+        athena_database_name = os.getenv("AWS_ATHENA_DATABASE_NAME")
+
+        datalake_stack = DataLakeStack(
             self,
             "datalake",
             application_ci=application_ci,
@@ -48,7 +43,7 @@ class RegionalStack(aws_cdk.Stack):
             env=aws_environment,
         )
 
-        scratch_stack = IotScratchStack(
+        scratch_stack = ScratchStack(
             self,
             "scratch",
             application_ci=application_ci,
@@ -65,5 +60,16 @@ class RegionalStack(aws_cdk.Stack):
             tag=tag,
             datalake_bucket_name=source_bucket["bucket_name"],
             demo_dataset_name="bike_sales",
+            db_name=athena_database_name,
+            env=aws_environment,
+        )
+
+        access_stack = AccessStack(
+            self,
+            "access",
+            application_ci=application_ci,
+            datalake_bucket=datalake_stack.datalake_bucket,
+            scratch_bucket=scratch_stack.scratch_bucket,
+            database_name=athena_database_name,
             env=aws_environment,
         )
