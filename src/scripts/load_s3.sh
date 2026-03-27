@@ -10,3 +10,4 @@ aws s3 cp Products.csv s3://$APP_CI-datalake-dev-us-east-2/bike_sales/products/p
 aws s3 cp ProductTexts.csv s3://$APP_CI-datalake-dev-us-east-2/bike_sales/producttexts/producttexts.csv
 aws s3 cp SalesOrders.csv s3://$APP_CI-datalake-dev-us-east-2/bike_sales/salesorders/salesorders.csv
 aws s3 cp SalesOrderItems.csv s3://$APP_CI-datalake-dev-us-east-2/bike_sales/salesorderitems/salesorderitems.csv
+aws s3 cp ../ddl/retail_schema.ddl s3://$APP_CI-datalake-dev-us-east-2/schemas/retail_schema.ddl
