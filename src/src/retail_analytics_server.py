@@ -13,6 +13,8 @@ logging.basicConfig(format="[%(levelname)s]: %(message)s", level=logging.INFO)
 
 mcp = FastMCP("Retail Analytics Server for MCP")
 
+# Authentication handled by horizon.prefect.io
+
 
 @mcp.tool()
 def get_schema(product: str) -> str:
@@ -54,11 +56,24 @@ def get_product_requirements(product: str) -> str:
     Returns:
         String format of the requirements for the given product.
     """
+
+    # Below is not supported on FastMCP Cloud
+    """
     try:
         with open(f"{product}.txt") as f:
             return f.read()
     except Exception as e:
         return f"No requirements available for {product}"
+    """
+    try:
+        s3 = boto3.client("s3", region_name=os.environ["AWS_REGION"])
+        response = s3.get_object(
+            Bucket=os.environ["ANALYTICS_BUCKET"],
+            Key=f"product_requirements/{product}.txt",
+        )
+        return response["Body"].read().decode("utf-8")
+    except Exception as e:
+        return f"Error getting product requirements for {product}. Error: {e}"
 
 
 @mcp.tool()
