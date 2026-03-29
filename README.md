@@ -12,3 +12,16 @@ Using this model, a staff of business analysts can use their understanding of th
 
 ![Sample Visualiztion](./docs/images/Visualization.png)
 
+The current decision support workflow:
+
+1. Developing key performance indicators (KPIs) or implementing KPIs based on requirements handed down from other business groups.
+2. Implementing those KPIs using SQL against the enterprise data model.
+3. Implementing the visualizations based on the SQL in the presentation layer.
+
+## Possible Future Direction Enabled By GenAI
+
+Many LLM based tools, such as Anthropic's Claude Code or Microsoft's CoPilot have demonstrated the ability to assist with coding. In this case, the coding is very specialized - transforming natural language KPI definitions into SQL using the enterprise data model as input.
+
+![KPI Generation](./docs/images/ClaudeExample1.png)
+
+
