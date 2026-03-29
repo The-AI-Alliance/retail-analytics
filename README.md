@@ -54,14 +54,14 @@ A very inexpensive data warehouse can be simulated using AWS Athena - a serverle
 Test data can be loaded directly into S3 as .csv files. SAP has open sourced [several test data sets under their Datasphere brand](https://github.com/SAP-samples/datasphere-content/tree/main).
 
 S3 and Athena can be set up easily using the [AWS Cloud Development kit (CDK)](https://aws.amazon.com/cdk/) infrastructure-as-code found in this repository. The root of this is in `./iac/aws/iac`. This consists of several stacks used to build out the project artifacts:
-    1. **datalake_stack**: A set of S3 buckets in `us-east-1` and `us-east-2` used for storing the `.csv` files.
-    2. **scratch_stack**: A second set of S3 buckets with a very short retention policy used for the AWS Athena query output.
-    3. **analytics_stack**: This creates an AWS Athena database, and loads the schema on top of each set of `.csv` files.
-    4. **access_stack**: This creates an AWS IAM user that can be used as a service account to execute queries against AWS Athena.  
+1. **datalake_stack**: A set of S3 buckets in `us-east-1` and `us-east-2` used for storing the `.csv` files.
+2. **scratch_stack**: A second set of S3 buckets with a very short retention policy used for the AWS Athena query output.
+3. **analytics_stack**: This creates an AWS Athena database, and loads the schema on top of each set of `.csv` files.
+4. **access_stack**: This creates an AWS IAM user that can be used as a service account to execute queries against AWS Athena.  
 
 A very simple MCP server using the Python FastMCP is included in `./src/src/retail_analytics_server.py` This MCP server defines two tools:
-    1. **get_schema** - this returns the DDL for the test schema to the LLM context
-    2. **execute_sql** - this will execute an Athena SQL statement and return the results to the context 
+1. **get_schema** - this returns the DDL for the test schema to the LLM context
+2. **execute_sql** - this will execute an Athena SQL statement and return the results to the context 
 
 This MCP server can be deployed directory from the project repository using [Prefect.io](https://horizon.prefect.io/). Since it is a non-production project, it can be deployed for free.
 
