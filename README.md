@@ -36,3 +36,17 @@ To combat this, the idea of "ground truth" is introduced. Queries and views are 
 
 ![Ground Truth](./docs/images/GroundTruth.png)
 
+Example of the workflow in action:
+
+![Workflow](./docs/images/Workflow.png)
+
+
+The second consideration: in a retail scenario, can natural language map to exact items or groups of items in the enterprise item hierarchy? An additional data structure - one that helps the LLM map natural language to actual items in the item hierarchy is needed, and will be added to this project demonstrating how this might be addressed in a production environment.
+
+## Putting It All Together
+
+This repository contains the code to demonstrate a possible GenAI future for decision support. The reference architecture:
+
+![Reference Architecture](./docs/images/ReferenceArchitecture.png)
+
+In this GenAI code assist future, "build" vs "buy" might be swung back into "build". Non-technical people - such as executives or senior managers may be able to contribute at a higher level, rather than waiting for the analysts to start a full development cycle. Higher skilled analysts might be deployed on higher level functionality, producing higher values  
