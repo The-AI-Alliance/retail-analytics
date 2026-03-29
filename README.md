@@ -20,8 +20,19 @@ The current decision support workflow:
 
 ## Possible Future Direction Enabled By GenAI
 
-Many LLM based tools, such as Anthropic's Claude Code or Microsoft's CoPilot have demonstrated the ability to assist with coding. In this case, the coding is very specialized - transforming natural language KPI definitions into SQL using the enterprise data model as input.
+Many LLM based tools, such as Anthropic's Claude Code or Microsoft's CoPilot have demonstrated the ability to assist with coding. In this case, the coding is very specialized - transforming natural language KPI definitions into SQL using the enterprise data model as input. The following examples use Claude Desktop and the supported Opus4.6 model:
 
 ![KPI Generation](./docs/images/ClaudeExample1.png)
 
+Similarly, another very specialized set of GenAI assisted coding: Javascript D3 widgets generated using SQL views:
+
+![Visualization Generation](./docs/images/ClaudeExample2.png)
+
+## Two Considerations
+
+Anybody that has ever worked in decision support has been confronted with the dreaded question "Why don't these two reports match?". The unpredictability of GenAI does not lend itself naturally to decision support, as the same KPI posed using natual language may generate different results at different times.
+
+To combat this, the idea of "ground truth" is introduced. Queries and views are developed with GenAI code assist, but are treated as version controlled artifacts that go through a normal review process. In the reference architecture, GitHub can be used as the truth repository, and a simple GenAI workflow can built around it:
+
+![Ground Truth](./docs/images/GroundTruth.png)
 
