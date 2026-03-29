@@ -1,5 +1,11 @@
-# How to Use `microsite-template`
+# retail-analytics
 
-This repo is used as a template to create and publish AI Alliance &ldquo;microsites&rdquo;. It is setup as a GitHub _template repo_, which you can use to create a new repo. Even if you aren't creating a microsite, you can use this procedure to create a new AI Alliance repo for other purposes. Just delete the `docs` directory after creating the repo and skip the steps that don't apply to you.
+This repository is meant to present a reference architecture and a reference implementation demonstrating the use of Generative AI (GenAI) for decision support analytics in the retail space.
 
-This file is replaced with the content from `README-template.md` (after some modifications...) when the repo is cloned to create a new repo. So, the instructions for using this template repo are in [`README-instructions.md`](https://github.com/The-AI-Alliance/microsite-template/blob/main/README-instructions.md).
+## Current State of Decision Support Analytics
+
+A very common pattern for decision support is aggregating data from several sources, such as point-of-sale, inventory control or supply chain systems into a central enterprise data warehouse. From there, a presentation layer can be built and published using any commerical analytics package, such as PowerBI, Cognos, Tableau or Grafana:
+
+![Traditional Decision Support](./docs/images/TradBI.png)
+
+
