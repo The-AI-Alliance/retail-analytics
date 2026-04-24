@@ -74,7 +74,7 @@ print(f"Lookback period for 'new' items: {lookback_days} day(s)")
 try:
     auth = Auth.Token(token)
     g = Github(
-        auth=auth, retry=5, timeout=15
+        auth=auth
     )  # Added retry and timeout to Github object
     repo = g.get_repo(repo_name)
     print("Successfully connected to GitHub API.")
