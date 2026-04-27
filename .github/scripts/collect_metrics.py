@@ -73,6 +73,7 @@ print(f"Lookback period for 'new' items: {lookback_days} day(s)")
 # --- GitHub API Connection ---
 try:
     auth = Auth.Token(token)
+    print("Starting run. Attempting to connect to GitHub API.")
     g = Github(
         auth=auth
     )  # Added retry and timeout to Github object
